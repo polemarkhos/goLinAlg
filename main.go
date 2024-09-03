@@ -81,10 +81,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.state = "result"
 				case "inner", "outer", "multiply":
 					// Request the second matrix or vector for further operations
+					m.input = ""
 					m.state = "inputB"
-					m.input = "Enter a second matrix or vector (comma-separated values, semicolon-separated rows):"
 				default:
-					m.input = "Invalid selection. Please choose 'det', 'norm', 'nullspace', 'inner', 'outer', or 'multiply'."
+					m.input = "Invalid selection. Please choose 'det', 'norm', 'nullspace', 'inner', 'outer', or 'multiply'.\n"
 					m.state = "select"
 				}
 			} else if m.state == "selectOp" {
@@ -147,7 +147,7 @@ func (m model) View() string {
 	case "inputA":
 		return "Enter a matrix or vector (comma-separated values, semicolon-separated rows):\n" + m.input + "\n"
 	case "inputB":
-		return m.input + "\n"
+		return "Enter a second matrix or vector (comma-separated values, semicolon-separated rows):\n"
 	case "select":
 		matrixView := matrixToString(m.matrixA)
 		return fmt.Sprintf("Matrix A:\n%s\nChoose an operation: det (Determinant), norm (Norm), nullspace (Nullspace), inner (Inner Product), outer (Outer Product), multiply (Matrix Multiplication)\n%s", matrixView, m.input)
