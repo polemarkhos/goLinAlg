@@ -147,7 +147,7 @@ func (m model) View() string {
 	case "inputA":
 		return "Enter a matrix or vector (comma-separated values, semicolon-separated rows):\n" + m.input + "\n"
 	case "inputB":
-		return "Enter a second matrix or vector (comma-separated values, semicolon-separated rows):\n"
+		return "Enter a second matrix or vector (comma-separated values, semicolon-separated rows):\n" + m.input + "\n"
 	case "select":
 		matrixView := matrixToString(m.matrixA)
 		return fmt.Sprintf("Matrix A:\n%s\nChoose an operation: det (Determinant), norm (Norm), nullspace (Nullspace), inner (Inner Product), outer (Outer Product), multiply (Matrix Multiplication)\n%s", matrixView, m.input)
